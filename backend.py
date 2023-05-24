@@ -1,20 +1,21 @@
 import requests
+import streamlit as st
 
-key = "a5ac512a54654c8e7c9c1e1e6b57d781"
+# Everything is accessible via the st.secrets dict:
+a = st.write("API key:", st.secrets["api_key"])
 
-def get_data(place, forecast_days=None, data_type=None):
+# 293 Video
+# key = "a5ac512a54654c8e7c9c1e1e6b57d781"
+
+def get_data(place, forecast_days=None):
     # Zhukovskiy 462755
     url = "http://api.openweathermap.org/data/2.5/forecast?" \
           f"q={place}&" \
-          f"appid={key}"
+          f"appid={st.secrets['API key']}"
     response = requests.get(url)
     data = response.json()
     filtered_data = data['list'][:8*forecast_days] # filter data by number of obs.
-    if data_type == "Temperature":
-        filtered_data = [i["main"]["temp"] for i in filtered_data]
-    if data_type == 'Sky':
-        filtered_data = [i["weather"][0]["main"] for i in filtered_data]
     return filtered_data
 
 if __name__ == "__main__":
-    print(get_data(place="Zhukovskiy", forecast_days=3, data_type='Temperature'))
+    print(get_data(place="Zhukovskiy", forecast_days=3))
