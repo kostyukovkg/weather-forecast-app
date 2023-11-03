@@ -1,9 +1,6 @@
 import requests
 import streamlit as st
 
-# Everything is accessible via the st.secrets dict:
-st.write("API key:", st.secrets["api_key"])
-
 def get_data(place, forecast_days=None):
     # Zhukovskiy 462755
     url = "http://api.openweathermap.org/data/2.5/forecast?" \
