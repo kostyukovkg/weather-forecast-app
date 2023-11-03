@@ -2,7 +2,7 @@ import requests
 import streamlit as st
 
 # Everything is accessible via the st.secrets dict:
-a = st.write("API key:", st.secrets["api_key"])
+st.write("API key:", st.secrets["api_key"])
 
 def get_data(place, forecast_days=None):
     # Zhukovskiy 462755
