@@ -8,7 +8,7 @@ def get_data(place, forecast_days=None):
     # Zhukovskiy 462755
     url = "http://api.openweathermap.org/data/2.5/forecast?" \
           f"q={place}&" \
-          f"appid={st.secrets['API key']}"
+          f"appid={st.secrets['api_key']}"
     response = requests.get(url)
     data = response.json()
     filtered_data = data['list'][:8*forecast_days] # filter data by number of obs.
